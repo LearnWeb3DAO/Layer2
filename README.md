@@ -23,7 +23,7 @@ A side chain is an independent EVM-compatible blockchain which runs in parallel 
 
 Since side chains are based on the EVM, you can think of them as mini ethereum blockchains. Side chains come with all the benefits of an EVM, just as writing smart contracts in solidity, and interact with the chain using web3 APIs.
 
-The drawbacks of side chains are that they can be less centralized. For example, if their consensus protocol uses proof or authority and those nodes collude to commit fraud.
+The drawbacks of side chains are that they can be more centralized. For example, if their consensus protocol uses proof or authority and those nodes collude to commit fraud.
 
 Important to note that, unlike other solutions below, side chains are technically not layer 2 because they do not use the security of the main chain.
 
@@ -42,6 +42,8 @@ Instead of designing a smart contract to support tic tac toe move by move, we de
 
 In applications that involve money/crypto transfers, sometimes these are called payment channels.
 
+For payments, another example of a good use of state channels would be getting paid royalties for music. For example, let's say that an artist wants to receive monthly payouts for their songs being listened to on music services, such as Spotify. The artist would like to get paid in ETH for this, but they do not really want to do the work for setting this up. A company could provide such a service to that artist. If the artist received an ETH transfer to their wallet for each and every single song listen, the transfer fees would far outweigh the profits from the listens. Using a state channel, the company could open a channel at the start of the month, collect royalties on behalf of the artist for the month, and then close the channel at the end of the month, sending them a lump sum of ETH for all royalties, only paying a transfer fee once that month. This saves on transfer fees while maintaining security.
+
 State channels still utilize blockchain methodology such as making each state change cryptographically secure. 
 
 In addition to potential gains to speed and lower fees, there are some other benefits to state channels. Since the beginning and end of the game is written to the main chain, but in between states are not, it's possible to have more privacy. The state channel was just between Alice and Bob, but since each move was not published to the blockchain, each move is not public.
@@ -52,7 +54,7 @@ This approach is not without its challenges as well. To open the channel, both A
 
 ### Rollups
 
-Rollups are solutions that perform transaction execution on Layer 2 but post transaction data onto Layer 1. By moving computation off chain, they free up more space on-chain. Onchain data availability is crucial, since it allows Ethereum to double check the integrity of rollup transactions.
+Rollups are solutions that perform transaction execution on Layer 2 but post transaction data onto Layer 1, in a bundled or summarized form. Think of rollups as a "squash and merge" operation. By moving computation off chain, they free up more space on-chain. Onchain data availability is crucial, since it allows Ethereum to double check the integrity of rollup transactions.
 
 Rollups work by deploying a set of smart contracts on Layer 1 that are responsible for deposits, withdraws, and verifying proofs. Proofs are the main distinction between different types of rollups. In general, there are two kinds of rollups: ZK Rollups and Optimistic Rollups.
 
@@ -64,23 +66,25 @@ It's important to note that when a challenge happens, the main chain can always 
 
 What's to stop bad actors from spamming a rollup network with bad transactions, or from spamming the network with fraud proof verifications? And where does the money come from for Layer 1 to verify transactions if challenged? To answer this question, we introduce 3 players in this space:
 
-Asserter: proposes to add a block of transactions to the main chain.
-Challenger: asserts that a particular block of transactions from a certain `Asserter` is fraudulent.
-Verifier: a smart contract on the main chain that verifies that a given block of transactions is valid.
+A user that proposes to add a block of transactions to the main chain. In this example, we will call this the `asserter`.
+A user that asserts that a particular block of transactions from a certain `asserter` is fraudulent. In this example, we will call this the `challenger`
+A smart contract on the main chain that verifies that a given block of transactions is valid. In this example, we will call this the `verifier`
 
 An `asserter` has to provide a bond to propose a block of transactions, usually in the form of some ETH.
 A `challenger` also has to provide a bond (usually ETH) to make a challenge.
 The `verifier` will verify the transaction(s) on the main chain.
 
-If the `asserter` is found to be fraudulent, they lose their entire bond. The `verifier` gets half of their bond for processing the verification, and the `challenger` gets the other half as a reward for finding the fraud.
+If the `asserter` is found to be fraudulent, they lose some of their bond. The `verifier` gets some of the asserter's bond for processing the verification, and the `challenger` gets another portion of the asserter's bond as a reward for finding the fraud.
 
-If the `asserter` is found to **NOT** be fraudulent, the `challenger` loses their entire bond. The `verifier` gets half of their bond for processing the verification as before, and this time the `asserter` gets the other half as a reward for their trouble.
+If the `asserter` is found to **NOT** be fraudulent, the `challenger` some of their bond. The `verifier` gets some of the challenger's bond for processing the verification as before, and this time the `asserter` gets some of the challenger's bond as a reward for their trouble.
 
 #### ZK Rollups
 
 ZK stands for "Zero Knowledge" and it's a method by which one party (the prover) can prove to another party (the verifier) that a given statement is true while the prover avoids conveying any additional information apart from the fact that the statement is indeed true. More on [Zero Knowledge Proofs](https://en.wikipedia.org/wiki/Zero-knowledge_proof).
 
 In this rollup, there are no individuals doing the verification. Instead, everyone who proposes a new set of rolled up transactions to be added to the main chain constructs a zero knowledge proof for it. This can be automatically verified by the smart contract that controls adding transactions to the main chain. In particular, the proposer constructs a certain kind of zero knowledge proof, called a [zk-SNARK](https://en.wikipedia.org/wiki/Non-interactive_zero-knowledge_proof), which is a `non-interactive zero knowledge proof`, meaning that this proof requires no interaction between the prover and the verifier.
+
+For a deeper dive in `zk-SNARK`s, refer to David Wong's series, (The Missing Explanation of zk-SNARKS)[https://www.cryptologie.net/article/507/the-missing-explanation-of-zk-snarks-part-1/]
 
 #### ZK vs Optimistic
 
@@ -91,8 +95,6 @@ So, why have optimistic rollups at all?
 The problem with ZK rollups is that it is difficult to construct these proofs, mathematically speaking. Every use case requires research time to find a matching cryptographic proof, which can take a long time to find.
 
 Furthermore, ZK proofs are often complex and therefore expensive to verify. The more operations the smart contract contains, the more expensive it is to run. In addition, smart contracts are also limited in space, so the proof must run in less than a certain number of operations.
-
-Finally, some existing smart contracts on the main chain are impossible to find ZK proofs for. Optimistic rollups, on the other hand, can support 99% of all smart contracts on the main chain.
 
 #### Validium
 
