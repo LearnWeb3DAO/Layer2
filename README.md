@@ -123,11 +123,10 @@ Some other useful docs about plasma are [Learn Plasma](https://www.learnplasma.o
 [Immutable X](https://www.immutable.com) is a Layer 2 scaling solution for NFTs on Ethereum. It allows developers to build marketplaces, games, apps, and more. While Ethereum handles only about 15 transactions per second and suffers from high-gas fees, an Layer 2 solution like `Immutable X` handles 9,000 transactions per second with zero gas fees. It leverages Ethereum’s well-developed security, connections, and ecosystem to help developers.
 
 #### Polygon (formerly Matic)
-(Polygon)[https://polygon.technology] is a protocol and a framework for building and connecting Ethereum-compatible blockchain networks. Aggregating scalable solutions on Ethereum supporting a multi-chain Ethereum ecosystem.
 
-### Polygon
+(Polygon)[https://polygon.technology] is a plasma-based, EVM-compatible, layer 2 scaling solution that makes use of proof-of-stake, side chains, and more. It is one of the most popular Ethereum L2 solutions out there today. For brief introductions to it, you should read (New to Polygon?)[https://docs.polygon.technology/docs/home/new-to-polygon] and (Polygon Architecture)[https://docs.polygon.technology/docs/home/architecture/polygon-architecture].
 
-Polygon is a plasma-based, EVM-compatible, layer 2 scaling solution that makes use of proof-of-stake, side chains, and more. It is one of the most popular Ethereum L2 solutions out there today. For brief introductions to it, you should read (New to Polygon?)[https://docs.polygon.technology/docs/home/new-to-polygon] and (Polygon Architecture)[https://docs.polygon.technology/docs/home/architecture/polygon-architecture]
+We will have more practical examples of using Polygon in future modules.
 
 ### Recommended Watch
 
