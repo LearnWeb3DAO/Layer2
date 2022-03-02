@@ -96,7 +96,7 @@ The `verifier` will verify the transaction(s) on the main chain.
 
 If the `asserter` is found to be fraudulent, they lose some of their bond. The `verifier` gets some of the asserter's bond for processing the verification, and the `challenger` gets another portion of the asserter's bond as a reward for finding the fraud.
 
-If the `asserter` is found to **NOT** be fraudulent, the `challenger` some of their bond. The `verifier` gets some of the challenger's bond for processing the verification as before, and this time the `asserter` gets some of the challenger's bond as a reward for their trouble.
+If the `asserter` is found to **NOT** be fraudulent, the `challenger` loses some of their bond. The `verifier` gets some of the challenger's bond for processing the verification as before, and this time the `asserter` gets some of the challenger's bond as a reward for their trouble.
 
 #### ZK Rollups
 
@@ -110,7 +110,7 @@ For a deeper dive in `zk-SNARK`s, refer to David Wong's series, [The Missing Exp
 
 #### ZK vs Optimistic
 
-At first glance, ZK rollups seem better in every way than optimistic rollups. After all, transactions can be verified automatically, without the need for challengers, and the asserters prove their own transactions before submitting them. Furthermore they pay gas to process the proof in the smart contract so only they lose if they submit an improver proof.
+At first glance, ZK rollups seem better in every way than optimistic rollups. After all, transactions can be verified automatically, without the need for challengers, and the asserters prove their own transactions before submitting them. Furthermore they pay gas to process the proof in the smart contract so only they lose if they submit an invalid proof.
 
 So, why have optimistic rollups at all?
 
@@ -130,7 +130,7 @@ As with side chain, the benefits of plasma are higher throughput and lower cost 
 
 To use Plasma, you can integrate one of several projects that have implemented Plasma, for example [Polygon](https://polygon.technology), which was formally called Matic.
 
-To dive deeper into Plasma, check out the (Plasma Whitepaper)[http://plasma.io/plasma.pdf].
+To dive deeper into Plasma, check out the [Plasma Whitepaper](http://plasma.io/plasma.pdf).
 
 Some other useful docs about plasma are [Learn Plasma](https://www.learnplasma.org/en) and [Plasma Docs on ethereum.org](https://ethereum.org/en/developers/docs/scaling/plasma)
 
@@ -154,7 +154,7 @@ We will now look at Validiums and Volitions.
 
 Validium works very similar to ZK rollups except data is stored off-chain. Since transaction data is not published on-chain, this introduces new trust assumptions as users must trust an operator to make data available when it is needed. This is typically achieved through a committee of known entities who stake their business reputation on being reliable data providers. If an L2 node operator stops servicing withdrawal requests, this committee will make its copy of the data publicly available.
 
-It is important to note that Validium is a type of data-availability situation, and does not concern itself with how transactions are executed. Typically you can use a Validium approach with both OR's and ZKR's.
+It is important to note that Validium is a type of data-availability situation, and does not concern itself with how transactions are executed. Typically you can use a Validium approach with ZKR based transaction execution.
 
 [Validium on ethereum.org](https://ethereum.org/en/developers/docs/scaling/validium)
 
@@ -163,7 +163,7 @@ Volition chains are those which are the birthchild of Rollups and Validium data-
 
 For example, a large trading firm may not want every single trade it makes to be available publicly on the main chain, but at the end of the week require a proof to be posted on the main-chain to inherit it's security benefits. So they can store data off-chain for each individual transaction, but bring it on-chain for the overall week's profit/loss and balance changes.
 
-Again, similar to Validiums, this is just a data-availability situation, and does not concern itself with how the transactions are executed. Typically, you can use a Volition approach with both OR's and ZKR's.
+Again, similar to Validiums, this is just a data-availability situation, and does not concern itself with how the transactions are executed. Typically, you can use a Volition approach with ZKR's.
 
 
 ### Examples of Layer 2
@@ -173,7 +173,7 @@ Again, similar to Validiums, this is just a data-availability situation, and doe
 
 #### Polygon (formerly Matic)
 
-[Polygon](https://polygon.technology) is a plasma-based, EVM-compatible, layer 2 scaling solution that makes use of proof-of-stake, side chains, and more. It is one of the most popular Ethereum L2 solutions out there today. For brief introductions to it, you should read (New to Polygon?)[https://docs.polygon.technology/docs/home/new-to-polygon] and (Polygon Architecture)[https://docs.polygon.technology/docs/home/architecture/polygon-architecture].
+[Polygon](https://polygon.technology) is a plasma-based, EVM-compatible, layer 2 scaling solution that makes use of proof-of-stake, side chains, and more. It is one of the most popular Ethereum L2 solutions out there today. For brief introductions to it, you should read [New to Polygon?](https://docs.polygon.technology/docs/home/new-to-polygon) and [Polygon Architecture](https://docs.polygon.technology/docs/home/architecture/polygon-architecture).
 
 We will have more practical examples of using Polygon in future modules.
 
@@ -195,3 +195,12 @@ and many more... This is not an exhaustive list, and there are many more Layer 2
 
 [Ethereum Layer 2 Scaling Explained](https://youtu.be/BgCgauWVTs0)
 [Rollups Explained](https://youtu.be/7pWxCklcNsU)
+
+
+---
+
+## Contributors
+
+**This module was built in collaboration with [Hypotenuse Labs](https://hypotenuse.ca/)**
+
+![](https://i.imgur.com/Ewwk3Iz.png)
