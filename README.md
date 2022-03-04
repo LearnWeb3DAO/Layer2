@@ -30,9 +30,11 @@ We will look at the following categories:
 1. State Channels
 2. Side Chains
 3. Rollups
+
     3.1. Optimistic Rollups (ORs)
     3.2. Zero-Knowledge Rollups (ZKRs)
     3.3. ZKR vs OR
+
 4. Plasma
 5. Validiums
 6. Volitions
