@@ -17,7 +17,15 @@ Since transactions on layer 2 are happening on a different chain, a connection i
 
 ## Layer 2 Scaling Solutions
 
-There are a multitude of Layer 2 scaling solutions out there, or being developed, today. We will look at them broadly. We will cover the following topics:
+There are a multitude of Layer 2 scaling solutions out there, or being developed, today. We will look at them broadly.
+
+There are two main dimensions where Layer 2 scaling solutions differ from each other. The first is **transaction execution** and the second is **data availability**.
+
+Transaction execution strategies deal with how transactions are run, where they are run, what the trust environments are, what the security and decentralization environments are, etc.
+
+Data availability strategies deal with whether or not the Layer 2 solution makes their transaction data available on the main Layer 1 chain or not. 
+
+We will look at the following categories:
 
 1. State Channels
 2. Side Chains
@@ -144,15 +152,17 @@ For example, if a professional trading firm was trading massive amounts on money
 Layer 2 solutions fall in one of these data-availability situations:
 ![](https://i.imgur.com/TWmjV4H.png)
 
+> NOTE: On-chain and off-chain in this context particularly refers to the MAIN Layer 1 chain. On-chain means data is available on the Layer 1 main chain, and off-chain means it is NOT available on the Layer 1 main chain, though it *may* be available on the Layer 2 chain.
+
 Both rollup techniques store data on-chain by posting verifiable proofs on the main chain, but ZKR's use validity proofs which are verified upon posting, whereas OR's rely on `challengers` to catch fraudulent proofs.
 
-On the other hand, Plasma chains store most data off-chain, and only need to touch main-chain usually when there is a dispute. At best, they would post snapshots to the main chain without a proof attached. So if you trust the Plasma chain, then only does the snapshot help. Similar to OR's, the snapshots are considered to be valid by default unless a dispute is raised.
+On the other hand, Plasma chains store most data off the main chain, and only need to touch main-chain usually when there is a dispute. At best, they would post snapshots to the main chain without a proof attached. So if you trust the Plasma chain, then only does the snapshot help. Similar to OR's, the snapshots are considered to be valid by default unless a dispute is raised.
 
 We will now look at Validiums and Volitions.
 
 #### Validium Chains
 
-Validium works very similar to ZK rollups except data is stored off-chain. Since transaction data is not published on-chain, this introduces new trust assumptions as users must trust an operator to make data available when it is needed. This is typically achieved through a committee of known entities who stake their business reputation on being reliable data providers. If an L2 node operator stops servicing withdrawal requests, this committee will make its copy of the data publicly available.
+Validium works very similar to ZK rollups except data is stored off the main chain. Since transaction data is not published on the main chain, this introduces new trust assumptions as users must trust an operator to make data available when it is needed. This is typically achieved through a committee of known entities who stake their business reputation on being reliable data providers. If an L2 node operator stops servicing withdrawal requests, this committee will make its copy of the data publicly available.
 
 It is important to note that Validium is a type of data-availability situation, and does not concern itself with how transactions are executed. Typically you can use a Validium approach with ZKR based transaction execution.
 
@@ -196,6 +206,23 @@ and many more... This is not an exhaustive list, and there are many more Layer 2
 [Ethereum Layer 2 Scaling Explained](https://youtu.be/BgCgauWVTs0)
 [Rollups Explained](https://youtu.be/7pWxCklcNsU)
 
+
+## The ETH network ugprade and Layer 2's
+As we get closer to the ETH network upgrade (previously referred to as Eth2), a common question to ask is "will layer 2's still be relevant?"
+
+The short answer is yes.
+
+The long answer requires us looking at what the ETH upgrade is bringing to the table, and why it benefits Layer 2's.
+
+Currently, ETH operates as a single, distributed 'world computer'. All transactions are executed serially and there is a single shared state that is maintained amongst all Ethereum nodes. This has it's advantages, but the disadvantage is that when a lot of users want to transact parallely, gas fees can spike which can make transactions very expensive. Recently, the demand for Ethereum dApps has led to a relatively high gas fees. You can argue security and decentralization benefits over cost all day, but it is still expensive for an average newcomer to use.
+
+Layer 2 solutions, like rollups, help alleviate the cost by doing transaction execution off the main chain. Instead, they do the computation on the layer 2, and then post a cryptographic proof back to the main chain that can be verified by anyone. Since anyone can check whether or not the proof that was posted is valid or invalid, they can feel comfortable in knowing if the transaction was executed properly or improperly. Due to this property, rollups inherit the security benefits of the main chain without needing to pay gas fees for computation and execution on the main chain.
+
+With the ETH upgrade, ETH is focused on enabling data sharding. Essentially this means that the single state of the network will be broken down into smaller sets of data called shards, and the goal is to reduce storage costs by making storage more accessible to the network. The consequence of doing this is that when rollups post proofs back to the main chain, it will be cheaper for the rollup to do so.
+
+Gas costs on rollup chains are currently limited by gas costs of storage on the main chain. Even though the computation on layer 2's is very cheap, posting proofs to the main chain still requires paying gas on Ethereum to store the proof. If storage costs on Ethereum go down, then cost of using rollup chains also goes down as proofs can be posted for cheaper. This will incentivize more people to use Layer 2 chains, and direct demand of Ethereum data storage will go down, which will further decrease storage costs on Ethereum even more, and so on. 
+
+Therefore, the ETH upgrade will actually help secure Layer 2 solutions gain adoption and become even cheaper to use. 
 
 ---
 
