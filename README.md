@@ -229,5 +229,3 @@ Therefore, the ETH upgrade will actually help secure Layer 2 solutions gain adop
 ## Contributors
 
 **This module was built in collaboration with [Hypotenuse Labs](https://hypotenuse.ca/)**
-
-![](https://i.imgur.com/Ewwk3Iz.png)
