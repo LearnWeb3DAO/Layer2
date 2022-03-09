@@ -204,8 +204,10 @@ and many more... This is not an exhaustive list, and there are many more Layer 2
 ### Recommended Watch
 
 [Ethereum Layer 2 Scaling Explained](https://youtu.be/BgCgauWVTs0)
+
 [Rollups Explained](https://youtu.be/7pWxCklcNsU)
 
+[Overview of different Scaling Solutions](https://www.youtube.com/watch?v=9pJjtEeq-N4)
 
 ## The ETH network ugprade and Layer 2's
 As we get closer to the ETH network upgrade (previously referred to as Eth2), a common question to ask is "will layer 2's still be relevant?"
