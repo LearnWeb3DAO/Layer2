@@ -94,7 +94,7 @@ It's important to note that when a challenge happens, the main chain can always 
 What's to stop bad actors from spamming a rollup network with bad transactions, or from spamming the network with fraud proof verifications? And where does the money come from for Layer 1 to verify transactions if challenged? To answer this question, we introduce 3 players in this space:
 
 1. `asserter` - the proposer attempting to post a proof of transactions on the main chain, thereby asserting their validity
-2. `challenges` - the user trying to prove that the proof posted by the `asserter` is fraudulent
+2. `challenger` - the user trying to prove that the proof posted by the `asserter` is fraudulent
 3. `verifier` - a smart contract on the main chain that verifies the proof and checks it's validity
 
 
