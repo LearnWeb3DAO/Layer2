@@ -3,6 +3,7 @@
 ## Layer 1 vs Layer 2
 
 ### Layer 1
+
 A Layer-1 blockchain (also known as the parent chain or root chain) is typically a name used to describe a main blockchain network protocol such as Ethereum or Bitcoin. Layer-1 blockchains are simply the main network that a Layer-2 scaling solution attaches to in order to improve the scalability and transaction throughput of the main chain, or Layer 1. The name Layer 1 comes from its relationship with Layer-2 scaling solutions such as state channels, rollups, and plasma side chains, all of which we will get into in more detail.
 
 Think of Layer 1 as the standard blockchain technology we've been studying so far, and Layer 2 as extensions built on top of that blockchain to add functionality.
@@ -23,7 +24,7 @@ There are two main dimensions where Layer 2 scaling solutions differ from each o
 
 Transaction execution strategies deal with how transactions are run, where they are run, what the trust environments are, what the security and decentralization environments are, etc.
 
-Data availability strategies deal with whether or not the Layer 2 solution makes their transaction data available on the main Layer 1 chain or not. 
+Data availability strategies deal with whether or not the Layer 2 solution makes their transaction data available on the main Layer 1 chain or not.
 
 We will look at the following categories:
 
@@ -38,6 +39,7 @@ We will look at the following categories:
 6. Volitions
 
 ### State Channels
+
 ![](https://i.imgur.com/jBbWJoT.png)
 
 State channels were the first widespread scaling approach for blockchains. State channels are used when two or more users want to do a bunch of transactions in a trusted setting without paying gas every single time.
@@ -52,10 +54,9 @@ In applications that involve money/crypto transfers, sometimes these are called 
 
 For payments, another example of a good use of state channels would be getting paid royalties for music. For example, let's say that an artist wants to receive monthly payouts for their songs being listened to on music services, such as Spotify. The artist would like to get paid in ETH for this, but they do not really want to do the work for setting this up. A company could provide such a service to that artist. If the artist received an ETH transfer to their wallet for each and every single song listen, the transfer fees would far outweigh the profits from the listens. Using a state channel, the company could open a channel at the start of the month, collect royalties on behalf of the artist for the month, and then close the channel at the end of the month, sending them a lump sum of ETH for all royalties, only paying a transfer fee once that month. This saves on transfer fees while maintaining security.
 
-State channels still utilize blockchain methodology such as making each state change cryptographically secure. 
+State channels still utilize blockchain methodology such as making each state change cryptographically secure.
 
 In addition to potential gains to speed and lower fees, there are some other benefits to state channels. Since the beginning and end of the game is written to the main chain, but in between states are not, it's possible to have more privacy. The state channel was just between Alice and Bob, but since each move was not published to the blockchain, each move is not public.
-
 
 This approach is not without its challenges as well. The core assumption under which State Channels are useful is that participants of the state channel trust each other to perform these transactions off-chain. Since to open the channel, both Alice and Bob had to put down 10 ETH. That money is locked into the smart contract until the state channel is closed. However, if Alice goes offline on her move, Bob will never get his money back. Therefore, if Bob does not trust Alice, a state channel is not the best approach since either player can lock up the smart contract.
 
@@ -71,9 +72,10 @@ Since side chains are based on the EVM, you can think of them as mini ethereum b
 
 The drawbacks of side chains are that they can be more centralized. For example, if their consensus protocol uses a less secure or less decentralized approach in order to have higher transaction throughput and those nodes collude to commit fraud.
 
-Important to note that, unlike other solutions below, side chains are *technically* not layer 2 because they do not use the security of the main chain, but are often referred to as such.
+Important to note that, unlike other solutions below, side chains are _technically_ not layer 2 because they do not use the security of the main chain, but are often referred to as such.
 
 #### Further Reading
+
 [Side chains on ethereum.org](https://ethereum.org/en/developers/docs/scaling/sidechains)
 
 ### Rollups
@@ -83,9 +85,10 @@ Rollups are solutions that perform transaction execution on Layer 2 but post tra
 Rollups work by deploying a set of smart contracts on Layer 1 that are responsible for deposits, withdraws, and verifying proofs. Proofs are the main distinction between different types of rollups. In general, there are two kinds of rollups: Optimistic Rollups and Zero-Knowledge Rollups.
 
 #### Optimistic Rollups
+
 ![](https://i.imgur.com/9YNcWTy.png)
 
-In optimistic rollups, batches of transaction data are posted to the main chain and presumed to be **valid by default** (hence the name optimistic) but can be challenged by other users. 
+In optimistic rollups, batches of transaction data are posted to the main chain and presumed to be **valid by default** (hence the name optimistic) but can be challenged by other users.
 
 Theoretically, anyone can challenge them by submitting a claim, also known as fraud proof, to prove that a batch committed to the chain contained invalid state transitions. If the fraud proof is valid, these invalid state transitions would be rolled back. If nobody challenges the transaction, it will be committed to the main chain. To give users enough time to challenge transactions, there is a long wait time between a transaction being posted to it being committed on the main chain, typically a few days but as long as a week. During this time, you cannot withdraw your funds to the main chain.
 
@@ -96,7 +99,6 @@ What's to stop bad actors from spamming a rollup network with bad transactions, 
 1. `asserter` - the proposer attempting to post a proof of transactions on the main chain, thereby asserting their validity
 2. `challenger` - the user trying to prove that the proof posted by the `asserter` is fraudulent
 3. `verifier` - a smart contract on the main chain that verifies the proof and checks it's validity
-
 
 An `asserter` has to provide a bond to propose a block of transactions, usually in the form of some ETH.
 A `challenger` also has to provide a bond (usually ETH) to make a challenge.
@@ -127,13 +129,14 @@ The problem with ZK rollups is that it is difficult to construct these proofs, m
 Furthermore, ZK proofs are often complex and therefore expensive to verify. The more operations the smart contract contains, the more expensive it is to run. In addition, smart contracts are also limited in space, so the proof must run in less than a certain number of operations.
 
 ### Plasma
+
 ![](https://i.imgur.com/EWYDWKJ.png)
 
 Plasma is a framework for building scalable, layer 2 applications. Plasma uses a lot of the above ideas in its applications. The building blocks of plasma are off-chain executions, state commitments, and entry/exits to the main chain. A plasma chain is a separate, child blockchain that is anchored to the main Ethereum chain. Plasma chains use various fraud proofs to arbitrate disputes, just like optimistic rollups. Like side chains, plasma chains have their own consensus algorithm and create blocks of transactions. At fixed intervals, a compressed representation of each block is committed to a smart contract on Ethereum. [Merkle trees](https://en.wikipedia.org/wiki/Merkle_tree) enable creation of a limitless stack of these chains that can work to offload bandwidth from the parent chains (including Mainnet). Plasma chains do as much work as possible off-chain. The implementation of Plasma gives the ability of hundreds of side chain transactions to be processed offline with only a single hash of the side chain block being added to the Ethereum blockchain.
 
 Plasma chains only interact with the main chain to commit their state, or to facilitate entry and exit. Since most implementations of plasma are an entirely different blockchain, it must facilitate entering and exiting the chain from the main chain, which is facilitated by smart contracts. Actually, one of the big downsides with plasma networks is that it's more difficult to withdraw assets from it to the main chain. Withdrawals are delayed by several days to allow for challenges, as with optimistic rollups. For fungible assets this can be mitigated by liquidity providers, but there is an associated capital cost. This is because assets on plasma networks are not exactly the same as the assets on the main chain. For example, you do not hold ETH on plasma, you usually hold wETH (wrapped ETH), which has a 1:1 value to ETH.
 
-Plasma implementations also rely on validators to watch the network and ensure security. There is also a waiting period when funds are withdrawn, to allow for challenges. 
+Plasma implementations also rely on validators to watch the network and ensure security. There is also a waiting period when funds are withdrawn, to allow for challenges.
 As with side chain, the benefits of plasma are higher throughput and lower cost per transaction. It's excellent for transactions between two users. However, the downsides of plasma are that it does not support computation as complex as the main chain allows, though many solutions are working on ways to address this.
 
 To use Plasma, you can integrate one of several projects that have implemented Plasma, for example [Polygon](https://polygon.technology), which was formally called Matic.
@@ -143,16 +146,17 @@ To dive deeper into Plasma, check out the [Plasma Whitepaper](http://plasma.io/p
 Some other useful docs about plasma are [Learn Plasma](https://www.learnplasma.org/en) and [Plasma Docs on ethereum.org](https://ethereum.org/en/developers/docs/scaling/plasma)
 
 ### Data-Availability
+
 So far we have been talking about the different approaches to transaction execution taken by various scaling solutions, and the trust and security environments in which those transactions are run.
 
 However, another dimension in which Layer 2's have varying tradeoffs is data availability. On main chains, we are used to having all data being posted publicly on the blockchain. This, however, carries along with it significant privacy issues.
 
-For example, if a professional trading firm was trading massive amounts on money on a DEX, they likely do not want their trading strategies to be made public, otherwise it's not useful to them anymore. 
+For example, if a professional trading firm was trading massive amounts on money on a DEX, they likely do not want their trading strategies to be made public, otherwise it's not useful to them anymore.
 
 Layer 2 solutions fall in one of these data-availability situations:
 ![](https://i.imgur.com/TWmjV4H.png)
 
-> NOTE: On-chain and off-chain in this context particularly refers to the MAIN Layer 1 chain. On-chain means data is available on the Layer 1 main chain, and off-chain means it is NOT available on the Layer 1 main chain, though it *may* be available on the Layer 2 chain.
+> NOTE: On-chain and off-chain in this context particularly refers to the MAIN Layer 1 chain. On-chain means data is available on the Layer 1 main chain, and off-chain means it is NOT available on the Layer 1 main chain, though it _may_ be available on the Layer 2 chain.
 
 Both rollup techniques store data on-chain by posting verifiable proofs on the main chain, but ZKR's use validity proofs which are verified upon posting, whereas OR's rely on `challengers` to catch fraudulent proofs.
 
@@ -169,16 +173,17 @@ It is important to note that Validium is a type of data-availability situation, 
 [Validium on ethereum.org](https://ethereum.org/en/developers/docs/scaling/validium)
 
 #### Volition Chains
+
 Volition chains are those which are the birthchild of Rollups and Validium data-availability approaches. Essentially, they allow for a hybrid data-availability scenario where users can decide what they want on the main chain and what they do not want on the main chain.
 
 For example, a large trading firm may not want every single trade it makes to be available publicly on the main chain, but at the end of the week require a proof to be posted on the main-chain to inherit it's security benefits. So they can store data off-chain for each individual transaction, but bring it on-chain for the overall week's profit/loss and balance changes.
 
 Again, similar to Validiums, this is just a data-availability situation, and does not concern itself with how the transactions are executed. Typically, you can use a Volition approach with ZKR's.
 
-
 ### Examples of Layer 2
 
 #### Immutable X
+
 [Immutable X](https://www.immutable.com) is a Layer 2 scaling solution for NFTs on Ethereum. It allows developers to build marketplaces, games, apps, and more. While Ethereum handles only about 15 transactions per second and suffers from high-gas fees, an Layer 2 solution like `Immutable X` handles 9,000 transactions per second with zero gas fees. It leverages Ethereum’s well-developed security, connections, and ecosystem to help developers.
 
 #### Polygon (formerly Matic)
@@ -188,16 +193,18 @@ Again, similar to Validiums, this is just a data-availability situation, and doe
 We will have more practical examples of using Polygon in future modules.
 
 #### Arbitrum
+
 [Arbitrum](https://offchainlabs.com/) is an optimistic rollup solution for general purpose smart contracts on Ethereum. It is EVM-compatible, and developers can easily port their existing Solidity code to Arbitrum.
 
 #### Optimism
-[Optimism](https://www.optimism.io/) is also an optimistic rollup solution for general purpose smart contracts on Ethereum. It is also EVM-compatible, and develoeprs can port their existing Solidity code to Optimism.
+
+[Optimism](https://www.optimism.io/) is also an optimistic rollup solution for general purpose smart contracts on Ethereum. It is also EVM-compatible, and developers can port their existing Solidity code to Optimism.
 
 Arbitrum and Optimism differ in some low-level nitty-gritty technical details, but on the surface, they both operate within the same category.
 
 #### zkSync
-[zkSync](https://zksync.io/) is a ZK-Rollup solution for Ethereum. Since generalized ZK-Rollups are *extremely* hard, currently zkSync supports ETH and ERC20 token transfers, NFTs, atomic swaps, and orderbook based DEX's.
 
+[zkSync](https://zksync.io/) is a ZK-Rollup solution for Ethereum. Since generalized ZK-Rollups are _extremely_ hard, currently zkSync supports ETH and ERC20 token transfers, NFTs, atomic swaps, and orderbook based DEX's.
 
 and many more... This is not an exhaustive list, and there are many more Layer 2 solutions out there competing for attention and market share, differing in technical details on low-level implementations. You can probably find hundreds if you look online.
 
@@ -210,6 +217,7 @@ and many more... This is not an exhaustive list, and there are many more Layer 2
 [Overview of different Scaling Solutions](https://www.youtube.com/watch?v=9pJjtEeq-N4)
 
 ## The ETH network ugprade and Layer 2's
+
 As we get closer to the ETH network upgrade (previously referred to as Eth2), a common question to ask is "will layer 2's still be relevant?"
 
 The short answer is yes.
@@ -222,9 +230,9 @@ Layer 2 solutions, like rollups, help alleviate the cost by doing transaction ex
 
 With the ETH upgrade, ETH is focused on enabling data sharding. Essentially this means that the single state of the network will be broken down into smaller sets of data called shards, and the goal is to reduce storage costs by making storage more accessible to the network. The consequence of doing this is that when rollups post proofs back to the main chain, it will be cheaper for the rollup to do so.
 
-Gas costs on rollup chains are currently limited by gas costs of storage on the main chain. Even though the computation on layer 2's is very cheap, posting proofs to the main chain still requires paying gas on Ethereum to store the proof. If storage costs on Ethereum go down, then cost of using rollup chains also goes down as proofs can be posted for cheaper. This will incentivize more people to use Layer 2 chains, and direct demand of Ethereum data storage will go down, which will further decrease storage costs on Ethereum even more, and so on. 
+Gas costs on rollup chains are currently limited by gas costs of storage on the main chain. Even though the computation on layer 2's is very cheap, posting proofs to the main chain still requires paying gas on Ethereum to store the proof. If storage costs on Ethereum go down, then cost of using rollup chains also goes down as proofs can be posted for cheaper. This will incentivize more people to use Layer 2 chains, and direct demand of Ethereum data storage will go down, which will further decrease storage costs on Ethereum even more, and so on.
 
-Therefore, the ETH upgrade will actually help secure Layer 2 solutions gain adoption and become even cheaper to use. 
+Therefore, the ETH upgrade will actually help secure Layer 2 solutions gain adoption and become even cheaper to use.
 
 ---
 
