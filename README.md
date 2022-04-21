@@ -158,8 +158,6 @@ Some other useful docs about plasma are [Learn Plasma](https://www.learnplasma.o
 
 <Quiz questionId="b6a57af1-a718-4716-9c58-db2147e29415" />
 
-<Quiz questionId="926ee9f0-64ca-4770-af83-595e9840cc1b" />
-
 ### Data-Availability
 So far we have been talking about the different approaches to transaction execution taken by various scaling solutions, and the trust and security environments in which those transactions are run.
 
@@ -230,6 +228,8 @@ and many more... This is not an exhaustive list, and there are many more Layer 2
 [Rollups Explained](https://youtu.be/7pWxCklcNsU)
 
 [Overview of different Scaling Solutions](https://www.youtube.com/watch?v=9pJjtEeq-N4)
+
+<Quiz questionId="926ee9f0-64ca-4770-af83-595e9840cc1b" />
 
 ## The ETH network ugprade and Layer 2's
 As we get closer to the ETH network upgrade (previously referred to as Eth2), a common question to ask is "will layer 2's still be relevant?"
