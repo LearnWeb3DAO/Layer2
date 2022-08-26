@@ -78,7 +78,7 @@ Important to note that, unlike other solutions below, side chains are *technical
 
 ### Rollups
 
-Rollups are solutions that perform transaction execution on Layer 2 but post transaction data onto Layer 1, in a bundled or summarized form. Think of rollups as a "squash and merge" operation. By moving computation off chain, they free up more space on-chain. Onchain data availability is crucial, since it allows Ethereum to double check the integrity of rollup transactions. Unlike state channels, the transaction data that rollups post on the main chain can be verified to be either correct or incorrect, and rollup execution need not happen in a trustful environment.
+Rollups are solutions that perform transaction execution on Layer 2 but post transaction data onto Layer 1, in a bundled or summarized form. Think of rollups as a "squash and merge" operation. By moving computation off chain, they free up more space on-chain. On-chain data availability is crucial since it allows Ethereum to double check the integrity of rollup transactions. Unlike state channels, the transaction data that rollups post on the main chain can be verified to be either correct or incorrect, and rollup execution need not happen in a trustful environment.
 
 Rollups work by deploying a set of smart contracts on Layer 1 that are responsible for deposits, withdraws, and verifying proofs. Proofs are the main distinction between different types of rollups. In general, there are two kinds of rollups: Optimistic Rollups and Zero-Knowledge Rollups.
 
@@ -87,7 +87,7 @@ Rollups work by deploying a set of smart contracts on Layer 1 that are responsib
 
 In optimistic rollups, batches of transaction data are posted to the main chain and presumed to be **valid by default** (hence the name optimistic) but can be challenged by other users. 
 
-Theoretically, anyone can challenge them by submitting a claim, also known as fraud proof, to prove that a batch committed to the chain contained invalid state transitions. If the fraud proof is valid, these invalid state transitions would be rolled back. If nobody challenges the transaction, it will be committed to the main chain. To give users enough time to challenge transactions, there is a long wait time between a transaction being posted to it being committed on the main chain, typically a few days but as long as a week. During this time, you cannot withdraw your funds to the main chain.
+Theoretically, anyone can challenge them by submitting a claim (also known as fraud proof) to prove that a batch committed to the chain contained invalid state transitions. If the fraud proof is valid, these invalid state transitions would be rolled back. If nobody challenges the transaction, it will be committed to the main chain. To give users enough time to challenge transactions, there is a long wait time between a transaction being posted to it being committed on the main chain, typically a few days but as long as a week. During this time, you cannot withdraw your funds to the main chain.
 
 It's important to note that when a challenge happens, the main chain can always verify the authenticity of transactions in the potential block. But these verifications take work and therefore fees.
 
@@ -95,11 +95,11 @@ What's to stop bad actors from spamming a rollup network with bad transactions, 
 
 1. `asserter` - the proposer attempting to post a proof of transactions on the main chain, thereby asserting their validity
 2. `challenger` - the user trying to prove that the proof posted by the `asserter` is fraudulent
-3. `verifier` - a smart contract on the main chain that verifies the proof and checks it's validity
+3. `verifier` - a smart contract on the main chain that verifies the proof and checks its validity
 
 
-An `asserter` has to provide a bond to propose a block of transactions, usually in the form of some ETH.
-A `challenger` also has to provide a bond (usually ETH) to make a challenge.
+An `asserter` must provide a bond to propose a block of transactions, usually in the form of some ETH.
+A `challenger` also must provide a bond (usually ETH) to make a challenge.
 The `verifier` will verify the transaction(s) on the main chain.
 
 If the `asserter` is found to be fraudulent, they lose some of their bond. The `verifier` gets some of the asserter's bond for processing the verification, and the `challenger` gets another portion of the asserter's bond as a reward for finding the fraud.
@@ -114,11 +114,11 @@ In this rollup, there are no individuals doing the verification. Instead, everyo
 
 In particular, the proposer constructs a certain kind of zero knowledge proof, called a [zk-SNARK](https://en.wikipedia.org/wiki/Non-interactive_zero-knowledge_proof), which is a `non-interactive zero knowledge proof`, meaning that this proof requires no interaction between the prover and the verifier.
 
-For a deeper dive in `zk-SNARK`s, refer to David Wong's series, [The Missing Explanation of zk-SNARKS](https://www.cryptologie.net/article/507/the-missing-explanation-of-zk-snarks-part-1/)
+For a deeper dive on `zk-SNARK`s, refer to David Wong's series, [The Missing Explanation of zk-SNARKS](https://www.cryptologie.net/article/507/the-missing-explanation-of-zk-snarks-part-1/)
 
 #### ZK vs Optimistic
 
-At first glance, ZK rollups seem better in every way than optimistic rollups. After all, transactions can be verified automatically, without the need for challengers, and the asserters prove their own transactions before submitting them. Furthermore they pay gas to process the proof in the smart contract so only they lose if they submit an invalid proof.
+At first glance, ZK rollups seem better in every way than optimistic rollups. After all, transactions can be verified automatically, without the need for challengers, and the asserters prove their own transactions before submitting them. Furthermore, they pay gas to process the proof in the smart contract so only they lose if they submit an invalid proof.
 
 So, why have optimistic rollups at all?
 
@@ -129,9 +129,9 @@ Furthermore, ZK proofs are often complex and therefore expensive to verify. The 
 ### Plasma
 ![](https://i.imgur.com/EWYDWKJ.png)
 
-Plasma is a framework for building scalable, Layer 2 applications. Plasma uses a lot of the above ideas in its applications. The building blocks of plasma are off-chain executions, state commitments, and entry/exits to the main chain. A plasma chain is a separate, child blockchain that is anchored to the main Ethereum chain. Plasma chains use various fraud proofs to arbitrate disputes, just like optimistic rollups. Like side chains, plasma chains have their own consensus algorithm and create blocks of transactions. At fixed intervals, a compressed representation of each block is committed to a smart contract on Ethereum. [Merkle trees](https://en.wikipedia.org/wiki/Merkle_tree) enable creation of a limitless stack of these chains that can work to offload bandwidth from the parent chains (including Mainnet). Plasma chains do as much work as possible off-chain. The implementation of Plasma gives the ability of hundreds of side chain transactions to be processed offline with only a single hash of the side chain block being added to the Ethereum blockchain.
+Plasma is a framework for building scalable Layer 2 applications. Plasma uses many of the above ideas in its applications. The building blocks of plasma are off-chain executions, state commitments, and entry/exits to the main chain. A plasma chain is a separate, child blockchain that is anchored to the main Ethereum chain. Plasma chains use various fraud proofs to arbitrate disputes, just like optimistic rollups. Like side chains, plasma chains have their own consensus algorithm and create blocks of transactions. A compressed representation of each block is committed to a smart contract on Ethereum at fixed intervals. [Merkle trees](https://en.wikipedia.org/wiki/Merkle_tree) enable creation of a limitless stack of these chains that can work to offload bandwidth from the parent chains (including Mainnet). Plasma chains do as much work as possible off-chain. The implementation of Plasma gives the ability of hundreds of side chain transactions to be processed offline with only a single hash of the side chain block being added to the Ethereum blockchain.
 
-Plasma chains only interact with the main chain to commit their state, or to facilitate entry and exit. Since most implementations of plasma are an entirely different blockchain, it must facilitate entering and exiting the chain from the main chain, which is facilitated by smart contracts. Actually, one of the big downsides with plasma networks is that it's more difficult to withdraw assets from it to the main chain. Withdrawals are delayed by several days to allow for challenges, as with optimistic rollups. For fungible assets this can be mitigated by liquidity providers, but there is an associated capital cost. This is because assets on plasma networks are not exactly the same as the assets on the main chain. For example, you do not hold ETH on plasma, you usually hold wETH (wrapped ETH), which has a 1:1 value to ETH.
+Plasma chains only interact with the main chain to commit their state, or to facilitate entry and exit. Since most implementations of plasma are entirely different blockchains, they must facilitate they entry and exit from the main chain via smart contracts. Actually, one of the big downsides with plasma networks is that it's more difficult to withdraw assets from it to the main chain. Withdrawals are delayed by several days to allow for challenges, as with optimistic rollups. For fungible assets this can be mitigated by liquidity providers, but there is an associated capital cost. This is because assets on plasma networks are not exactly the same as the assets on the main chain. For example, one does not truly hold ETH on plasma, but rather wETH (wrapped ETH), which has a 1:1 value to ETH.
 
 Plasma implementations also rely on validators to watch the network and ensure security. There is also a waiting period when funds are withdrawn, to allow for challenges. 
 As with side chain, the benefits of plasma are higher throughput and lower cost per transaction. It's excellent for transactions between two users. However, the downsides of plasma are that it does not support computation as complex as the main chain allows, though many solutions are working on ways to address this.
@@ -140,12 +140,12 @@ To use Plasma, you can integrate one of several projects that have implemented P
 
 To dive deeper into Plasma, check out the [Plasma Whitepaper](http://plasma.io/plasma.pdf).
 
-Some other useful docs about plasma are [Learn Plasma](https://www.learnplasma.org/en) and [Plasma Docs on ethereum.org](https://ethereum.org/en/developers/docs/scaling/plasma)
+Some other useful docs about plasma are [Learn Plasma](https://www.learnplasma.org/en) and [Plasma Docs on ethereum.org](https://ethereum.org/en/developers/docs/scaling/plasma).
 
 ### Data-Availability
 So far we have been talking about the different approaches to transaction execution taken by various scaling solutions, and the trust and security environments in which those transactions are run.
 
-However, another dimension in which Layer 2's have varying tradeoffs is data availability. On main chains, we are used to having all data being posted publicly on the blockchain. This, however, carries along with it significant privacy issues.
+Another dimension in which Layer 2's have varying tradeoffs is data availability. On main chains, we are used to having all data being posted publicly on the blockchain. This, however, can result in significant privacy issues.
 
 For example, if a professional trading firm was trading massive amounts on money on a DEX, they likely do not want their trading strategies to be made public, otherwise it's not useful to them anymore. 
 
