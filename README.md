@@ -17,13 +17,13 @@ Since transactions on Layer 2 are happening on a different chain, a connection i
 
 ## Layer 2 Scaling Solutions
 
-There are a multitude of Layer 2 scaling solutions out there, or being developed, today. We will look at them broadly.
+There are a multitude of Layer 2 scaling solutions being developed today. We will look at them broadly.
 
 There are two main dimensions where Layer 2 scaling solutions differ from each other. The first is **transaction execution** and the second is **data availability**.
 
 Transaction execution strategies deal with how transactions are run, where they are run, what the trust environments are, what the security and decentralization environments are, etc.
 
-Data availability strategies deal with whether or not the Layer 2 solution makes their transaction data available on the main Layer 1 chain or not. 
+Data availability strategies deal with whether the Layer 2 solution makes their transaction data available on the Layer 1 chain or not. 
 
 We will look at the following categories:
 
@@ -44,9 +44,9 @@ State channels were the first widespread scaling approach for blockchains. State
 
 A simple example of this is a tic tac toe game on the blockchain, with betting.
 
-Let's say Alice and Bob want to put 10 ETH down to play a game of tic tac toe. Also, let's say Alice and Bob trust each other. We might design a smart contract such that each move is recorded on the blockchain, and, at the end of the game, either Alice or Bob receive their winnings. But this would be an expensive game, since each move would cost either Alice or Bob gas fees. This can be solved with state channels.
+Let's say Alice and Bob want to put 10 ETH down to play a game of tic tac toe. Also, let's say Alice and Bob trust each other. We might design a smart contract such that each move is recorded on the blockchain, and, at the end of the game, either Alice or Bob receives their winnings. But this would be an expensive game as each move would cost either Alice or Bob gas fees. This can be solved with state channels.
 
-Instead of designing a smart contract to support tic tac toe move by move, we design a smart contract that allows opening and closing a state channel. Once opened, the state channel will have the default start state of the game, and Alice and Bob can makes moves on it without paying gas fees, because the opened state channel will be off-chain. Every move will not be written to the main chain. When the channel is closed, the end state of the game is written to the main chain, along with processing the winnings from the game. So, instead of writing every move to the blockchain, only the start and end of the game is written to the blockchain, thereby saving massive amounts of transaction fees. The number of moves in tac tac toe might be low, but imagine a game of chess, or go, and you'll see how much money this can save.
+Instead of designing a smart contract to support tic tac toe move by move, we design a smart contract that allows opening and closing a state channel. Once opened, the state channel will have the default start state of the game, and Alice and Bob can make moves on it without paying gas fees, because the opened state channel will be off-chain. Every move will not be written to the main chain. When the channel is closed, the end state of the game is written to the main chain, along with processing the winnings from the game. So, instead of writing every move to the blockchain, only the start and end of the game is written to the blockchain, thereby saving massive amounts of transaction fees. The number of moves in tic tac toe might be low, but imagine a game of chess, or go, and you'll see how much money this can save.
 
 In applications that involve money/crypto transfers, sometimes these are called **payment channels**.
 
@@ -65,13 +65,13 @@ This approach is not without its challenges as well. The core assumption under w
 
 ![](https://i.imgur.com/aAPEmI7.png)
 
-A side chain is an independent EVM-compatible blockchain which runs in parallel to a main blockchain, and has a channel to Layer 1. A side chain has its own validators and consensus method of adding blocks. Side chains accumulate transactions quickly and cheaply and summarize them to the main chain via a bridge or channel.
+A side chain is an independent EVM-compatible blockchain which runs in parallel to a main blockchain and has a channel to Layer 1. A side chain has its own validators and consensus method of adding blocks. Side chains accumulate transactions quickly and cheaply and summarize them to the main chain via a bridge or channel.
 
-Since side chains are based on the EVM, you can think of them as mini ethereum blockchains. Side chains come with all the benefits of an EVM, just as writing smart contracts in solidity, and interact with the chain using web3 APIs.
+Since side chains are based on the EVM, you can think of them as mini Ethereum blockchains. Side chains come with all the benefits of an EVM, just as writing smart contracts in solidity, and interact with the chain using web3 APIs.
 
 The drawbacks of side chains are that they can be more centralized. For example, if their consensus protocol uses a less secure or less decentralized approach in order to have higher transaction throughput and those nodes collude to commit fraud.
 
-Important to note that, unlike other solutions below, side chains are *technically* not Layer 2 because they do not use the security of the main chain, but are often referred to as such.
+Important to note that, unlike other solutions below, side chains are *technically* not Layer 2's because they do not use the security of the main chain, but they are often referred to as such.
 
 #### Further Reading
 [Side chains on ethereum.org](https://ethereum.org/en/developers/docs/scaling/sidechains)
