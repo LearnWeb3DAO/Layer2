@@ -3,17 +3,17 @@
 ## Layer 1 vs Layer 2
 
 ### Layer 1
-A Layer-1 blockchain (also known as the parent chain or root chain) is typically a name used to describe a main blockchain network protocol such as Ethereum or Bitcoin. Layer-1 blockchains are simply the main network that a Layer-2 scaling solution attaches to in order to improve the scalability and transaction throughput of the main chain, or Layer 1. The name Layer 1 comes from its relationship with Layer-2 scaling solutions such as state channels, rollups, and plasma side chains, all of which we will get into in more detail.
+A Layer 1 blockchain (also known as the parent chain or root chain) is typically a name used to describe a main blockchain network protocol such as Ethereum or Bitcoin. Layer 1 blockchains are simply the main network that a Layer 2 scaling solution attaches to in order to improve the scalability and transaction throughput of the main chain, or Layer 1. The name Layer 1 comes from its relationship with Layer 2 scaling solutions such as state channels, rollups, and plasma side chains, all of which we will get into in more detail.
 
 Think of Layer 1 as the standard blockchain technology we've been studying so far, and Layer 2 as extensions built on top of that blockchain to add functionality.
 
 ### Layer 2
 
-Layer 2 refers to a secondary framework or protocol that is built on top of an existing blockchain system. Major cryptocurrency networks such as Ethereum face transaction speed and scaling difficulties. Bitcoin and Ethereum are still not able to process thousands of transactions per second. Additionally, these layer 2 solutions usually offer much better transaction fees.
+Layer 2 refers to a secondary framework or protocol that is built on top of an existing blockchain system. Major cryptocurrency networks such as Ethereum face transaction speed and scaling difficulties. Bitcoin and Ethereum are still not able to process thousands of transactions per second. Additionally, these Layer 2 solutions usually offer much better transaction fees.
 
-Layer 2 protocols are specifically designed to integrate with the underlying blockchain to improve the transaction throughput. They rely on the consensus mechanism and security of the main chain. Operations on layer 2 can often be performed independently of layer 1. This is why these are sometimes referred to as "off-chain" solutions. While the main chain / layer 1 can provide the security inherent to a blockchain, layer 2 can provide the speed.
+Layer 2 protocols are specifically designed to integrate with the underlying blockchain to improve the transaction throughput. They rely on the consensus mechanism and security of the main chain. Operations on Layer 2 can often be performed independently of Layer 1. This is why these are sometimes referred to as "off-chain" solutions. While the main chain / Layer 1 can provide the security inherent to a blockchain, Layer 2 can provide the speed.
 
-Since transactions on layer 2 are happening on a different chain, a connection is periodically opened to move these transactions onto the main blockchain. This connection is sometimes called a bridge, or a channel. Therefore, a major consideration for a layer 2 solution is how transactions are validated and confirmed before being moved to the main chain.
+Since transactions on Layer 2 are happening on a different chain, a connection is periodically opened to move these transactions onto the main blockchain. This connection is sometimes called a bridge, or a channel. Therefore, a major consideration for a Layer 2 solution is how transactions are validated and confirmed before being moved to the main chain.
 
 ## Layer 2 Scaling Solutions
 
@@ -71,7 +71,7 @@ Since side chains are based on the EVM, you can think of them as mini ethereum b
 
 The drawbacks of side chains are that they can be more centralized. For example, if their consensus protocol uses a less secure or less decentralized approach in order to have higher transaction throughput and those nodes collude to commit fraud.
 
-Important to note that, unlike other solutions below, side chains are *technically* not layer 2 because they do not use the security of the main chain, but are often referred to as such.
+Important to note that, unlike other solutions below, side chains are *technically* not Layer 2 because they do not use the security of the main chain, but are often referred to as such.
 
 #### Further Reading
 [Side chains on ethereum.org](https://ethereum.org/en/developers/docs/scaling/sidechains)
@@ -129,7 +129,7 @@ Furthermore, ZK proofs are often complex and therefore expensive to verify. The 
 ### Plasma
 ![](https://i.imgur.com/EWYDWKJ.png)
 
-Plasma is a framework for building scalable, layer 2 applications. Plasma uses a lot of the above ideas in its applications. The building blocks of plasma are off-chain executions, state commitments, and entry/exits to the main chain. A plasma chain is a separate, child blockchain that is anchored to the main Ethereum chain. Plasma chains use various fraud proofs to arbitrate disputes, just like optimistic rollups. Like side chains, plasma chains have their own consensus algorithm and create blocks of transactions. At fixed intervals, a compressed representation of each block is committed to a smart contract on Ethereum. [Merkle trees](https://en.wikipedia.org/wiki/Merkle_tree) enable creation of a limitless stack of these chains that can work to offload bandwidth from the parent chains (including Mainnet). Plasma chains do as much work as possible off-chain. The implementation of Plasma gives the ability of hundreds of side chain transactions to be processed offline with only a single hash of the side chain block being added to the Ethereum blockchain.
+Plasma is a framework for building scalable, Layer 2 applications. Plasma uses a lot of the above ideas in its applications. The building blocks of plasma are off-chain executions, state commitments, and entry/exits to the main chain. A plasma chain is a separate, child blockchain that is anchored to the main Ethereum chain. Plasma chains use various fraud proofs to arbitrate disputes, just like optimistic rollups. Like side chains, plasma chains have their own consensus algorithm and create blocks of transactions. At fixed intervals, a compressed representation of each block is committed to a smart contract on Ethereum. [Merkle trees](https://en.wikipedia.org/wiki/Merkle_tree) enable creation of a limitless stack of these chains that can work to offload bandwidth from the parent chains (including Mainnet). Plasma chains do as much work as possible off-chain. The implementation of Plasma gives the ability of hundreds of side chain transactions to be processed offline with only a single hash of the side chain block being added to the Ethereum blockchain.
 
 Plasma chains only interact with the main chain to commit their state, or to facilitate entry and exit. Since most implementations of plasma are an entirely different blockchain, it must facilitate entering and exiting the chain from the main chain, which is facilitated by smart contracts. Actually, one of the big downsides with plasma networks is that it's more difficult to withdraw assets from it to the main chain. Withdrawals are delayed by several days to allow for challenges, as with optimistic rollups. For fungible assets this can be mitigated by liquidity providers, but there is an associated capital cost. This is because assets on plasma networks are not exactly the same as the assets on the main chain. For example, you do not hold ETH on plasma, you usually hold wETH (wrapped ETH), which has a 1:1 value to ETH.
 
@@ -183,7 +183,7 @@ Again, similar to Validiums, this is just a data-availability situation, and doe
 
 #### Polygon (formerly Matic)
 
-[Polygon](https://polygon.technology) is a plasma-based, EVM-compatible, layer 2 scaling solution that makes use of proof-of-stake, side chains, and more. It is one of the most popular Ethereum L2 solutions out there today. For brief introductions to it, you should read [New to Polygon?](https://docs.polygon.technology/docs/home/new-to-polygon) and [Polygon Architecture](https://docs.polygon.technology/docs/home/architecture/polygon-architecture).
+[Polygon](https://polygon.technology) is a plasma-based, EVM-compatible, Layer 2 scaling solution that makes use of proof-of-stake, side chains, and more. It is one of the most popular Ethereum L2 solutions out there today. For brief introductions to it, you should read [New to Polygon?](https://docs.polygon.technology/docs/home/new-to-polygon) and [Polygon Architecture](https://docs.polygon.technology/docs/home/architecture/polygon-architecture).
 
 We will have more practical examples of using Polygon in future modules.
 
@@ -210,7 +210,7 @@ and many more... This is not an exhaustive list, and there are many more Layer 2
 [Overview of different Scaling Solutions](https://www.youtube.com/watch?v=9pJjtEeq-N4)
 
 ## The ETH network ugprade and Layer 2's
-As we get closer to the ETH network upgrade (previously referred to as Eth2), a common question to ask is "will layer 2's still be relevant?"
+As we get closer to the ETH network upgrade (previously referred to as Eth2), a common question to ask is "will Layer 2's still be relevant?"
 
 The short answer is yes.
 
@@ -218,11 +218,11 @@ The long answer requires us looking at what the ETH upgrade is bringing to the t
 
 Currently, ETH operates as a single, distributed 'world computer'. All transactions are executed serially and there is a single shared state that is maintained amongst all Ethereum nodes. This has it's advantages, but the disadvantage is that when a lot of users want to transact parallely, gas fees can spike which can make transactions very expensive. Recently, the demand for Ethereum dApps has led to a relatively high gas fees. You can argue security and decentralization benefits over cost all day, but it is still expensive for an average newcomer to use.
 
-Layer 2 solutions, like rollups, help alleviate the cost by doing transaction execution off the main chain. Instead, they do the computation on the layer 2, and then post a cryptographic proof back to the main chain that can be verified by anyone. Since anyone can check whether or not the proof that was posted is valid or invalid, they can feel comfortable in knowing if the transaction was executed properly or improperly. Due to this property, rollups inherit the security benefits of the main chain without needing to pay gas fees for computation and execution on the main chain.
+Layer 2 solutions, like rollups, help alleviate the cost by doing transaction execution off the main chain. Instead, they do the computation on the Layer 2, and then post a cryptographic proof back to the main chain that can be verified by anyone. Since anyone can check whether or not the proof that was posted is valid or invalid, they can feel comfortable in knowing if the transaction was executed properly or improperly. Due to this property, rollups inherit the security benefits of the main chain without needing to pay gas fees for computation and execution on the main chain.
 
 With the ETH upgrade, ETH is focused on enabling data sharding. Essentially this means that the single state of the network will be broken down into smaller sets of data called shards, and the goal is to reduce storage costs by making storage more accessible to the network. The consequence of doing this is that when rollups post proofs back to the main chain, it will be cheaper for the rollup to do so.
 
-Gas costs on rollup chains are currently limited by gas costs of storage on the main chain. Even though the computation on layer 2's is very cheap, posting proofs to the main chain still requires paying gas on Ethereum to store the proof. If storage costs on Ethereum go down, then cost of using rollup chains also goes down as proofs can be posted for cheaper. This will incentivize more people to use Layer 2 chains, and direct demand of Ethereum data storage will go down, which will further decrease storage costs on Ethereum even more, and so on. 
+Gas costs on rollup chains are currently limited by gas costs of storage on the main chain. Even though the computation on Layer 2's is very cheap, posting proofs to the main chain still requires paying gas on Ethereum to store the proof. If storage costs on Ethereum go down, then cost of using rollup chains also goes down as proofs can be posted for cheaper. This will incentivize more people to use Layer 2 chains, and direct demand of Ethereum data storage will go down, which will further decrease storage costs on Ethereum even more, and so on. 
 
 Therefore, the ETH upgrade will actually help secure Layer 2 solutions gain adoption and become even cheaper to use. 
 
