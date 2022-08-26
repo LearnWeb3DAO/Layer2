@@ -78,7 +78,7 @@ Important to note that, unlike other solutions below, side chains are *technical
 
 ### Rollups
 
-Rollups are solutions that perform transaction execution on Layer 2 but post transaction data onto Layer 1, in a bundled or summarized form. Think of rollups as a "squash and merge" operation. By moving computation off chain, they free up more space on-chain. On-chain data availability is crucial since it allows Ethereum to double check the integrity of rollup transactions. Unlike state channels, the transaction data that rollups post on the main chain can be verified to be either correct or incorrect, and rollup execution need not happen in a trustful environment.
+Rollups are solutions that perform transaction execution on Layer 2 but post transaction data onto Layer 1, in a bundled or summarized form. Think of rollups as a "squash and merge" operation. By moving computation off chain, they free up more space on-chain. On-chain data-availability is crucial since it allows Ethereum to double check the integrity of rollup transactions. Unlike state channels, the transaction data that rollups post on the main chain can be verified to be either correct or incorrect, and rollup execution need not happen in a trustful environment.
 
 Rollups work by deploying a set of smart contracts on Layer 1 that are responsible for deposits, withdraws, and verifying proofs. Proofs are the main distinction between different types of rollups. In general, there are two kinds of rollups: Optimistic Rollups and Zero-Knowledge Rollups.
 
@@ -145,7 +145,7 @@ Some other useful docs about plasma are [Learn Plasma](https://www.learnplasma.o
 ### Data-Availability
 So far we have been talking about the different approaches to transaction execution taken by various scaling solutions, and the trust and security environments in which those transactions are run.
 
-Another dimension in which Layer 2's have varying tradeoffs is data availability. On main chains, we are used to having all data being posted publicly on the blockchain. This, however, can result in significant privacy issues.
+Another dimension in which Layer 2's have varying tradeoffs is data-availability. On main chains, we are used to having all data being posted publicly on the blockchain. This, however, can result in significant privacy issues.
 
 For example, if a professional trading firm was trading massive amounts on money on a DEX, they likely do not want their trading strategies to be made public, otherwise it's not useful to them anymore. 
 
@@ -162,24 +162,24 @@ We will now look at Validiums and Volitions.
 
 #### Validium Chains
 
-Validium works very similar to ZK rollups except data is stored off the main chain. Since transaction data is not published on the main chain, this introduces new trust assumptions as users must trust an operator to make data available when it is needed. This is typically achieved through a committee of known entities who stake their business reputation on being reliable data providers. If an L2 node operator stops servicing withdrawal requests, this committee will make its copy of the data publicly available.
+Validium chains works very similar to ZK rollups except that data is stored off the main chain. Since transaction data is not published on the main chain, this introduces new trust assumptions as users must trust an operator to make data available when it is needed. This is typically achieved through a committee of known entities who stake their business reputation on being reliable data providers. If an L2 node operator stops servicing withdrawal requests, this committee will make its copy of the data publicly available.
 
-It is important to note that Validium is a type of data-availability situation, and does not concern itself with how transactions are executed. Typically you can use a Validium approach with ZKR based transaction execution.
+It is important to note that a Validium is a type of data-availability situation and does not concern itself with how transactions are executed. You can typically use a Validium approach with ZKR based transaction execution.
 
 [Validium on ethereum.org](https://ethereum.org/en/developers/docs/scaling/validium)
 
 #### Volition Chains
 Volition chains are those which are the birthchild of Rollups and Validium data-availability approaches. Essentially, they allow for a hybrid data-availability scenario where users can decide what they want on the main chain and what they do not want on the main chain.
 
-For example, a large trading firm may not want every single trade it makes to be available publicly on the main chain, but at the end of the week require a proof to be posted on the main-chain to inherit it's security benefits. So they can store data off-chain for each individual transaction, but bring it on-chain for the overall week's profit/loss and balance changes.
+For example, a large trading firm may not want every single trade it makes to be available publicly on the main chain, but at the end of the week require a proof to be posted on the main chain to inherit its security benefits. So they can store data off-chain for each individual transaction, but bring it on-chain for the overall week's profit/loss and balance changes.
 
-Again, similar to Validiums, this is just a data-availability situation, and does not concern itself with how the transactions are executed. Typically, you can use a Volition approach with ZKR's.
+Again, like Validiums, this is just a data-availability situation and it does not concern itself with how the transactions are executed. You can use a Volition approach with ZKR's.
 
 
 ### Examples of Layer 2
 
 #### Immutable X
-[Immutable X](https://www.immutable.com) is a Layer 2 scaling solution for NFTs on Ethereum. It allows developers to build marketplaces, games, apps, and more. While Ethereum handles only about 15 transactions per second and suffers from high-gas fees, an Layer 2 solution like `Immutable X` handles 9,000 transactions per second with zero gas fees. It leverages Ethereum’s well-developed security, connections, and ecosystem to help developers.
+[Immutable X](https://www.immutable.com) is a Layer 2 scaling solution for NFTs on Ethereum. It allows developers to build marketplaces, games, apps, and more. While Ethereum handles only about 15 transactions per second and suffers from high-gas fees, a Layer 2 solution like `Immutable X` handles 9,000 transactions per second with zero gas fees. It leverages Ethereum’s well-developed security, connections, and ecosystem to help developers.
 
 #### Polygon (formerly Matic)
 
@@ -191,15 +191,14 @@ We will have more practical examples of using Polygon in future modules.
 [Arbitrum](https://offchainlabs.com/) is an optimistic rollup solution for general purpose smart contracts on Ethereum. It is EVM-compatible, and developers can easily port their existing Solidity code to Arbitrum.
 
 #### Optimism
-[Optimism](https://www.optimism.io/) is also an optimistic rollup solution for general purpose smart contracts on Ethereum. It is also EVM-compatible, and develoeprs can port their existing Solidity code to Optimism.
+[Optimism](https://www.optimism.io/) is also an optimistic rollup solution for general purpose smart contracts on Ethereum. It is also EVM-compatible, and developers can port their existing Solidity code to Optimism.
 
 Arbitrum and Optimism differ in some low-level nitty-gritty technical details, but on the surface, they both operate within the same category.
 
 #### zkSync
-[zkSync](https://zksync.io/) is a ZK-Rollup solution for Ethereum. Since generalized ZK-Rollups are *extremely* hard, currently zkSync supports ETH and ERC20 token transfers, NFTs, atomic swaps, and orderbook based DEX's.
+[zkSync](https://zksync.io/) is a ZK-Rollup solution for Ethereum. Since generalized ZK-Rollups are *extremely* hard, zkSync currently supports ETH and ERC20 token transfers, NFTs, atomic swaps, orderbook based DEX's, and many more...
 
-
-and many more... This is not an exhaustive list, and there are many more Layer 2 solutions out there competing for attention and market share, differing in technical details on low-level implementations. You can probably find hundreds if you look online.
+This is not an exhaustive list. There are many more Layer 2 solutions out there competing for attention and market share, differing in technical details on low-level implementations. You can probably find hundreds if you look online.
 
 ### Recommended Watch
 
@@ -209,22 +208,22 @@ and many more... This is not an exhaustive list, and there are many more Layer 2
 
 [Overview of different Scaling Solutions](https://www.youtube.com/watch?v=9pJjtEeq-N4)
 
-## The ETH network ugprade and Layer 2's
-As we get closer to the ETH network upgrade (previously referred to as Eth2), a common question to ask is "will Layer 2's still be relevant?"
+## The Ethereum network upgrade and Layer 2's
+As we get closer to the Ethereum network upgrade (previously referred to as Eth2), a common question to ask is "will Layer 2's still be relevant?"
 
 The short answer is yes.
 
-The long answer requires us looking at what the ETH upgrade is bringing to the table, and why it benefits Layer 2's.
+The long answer requires us looking at what the upgrade is bringing to the table, and why it benefits Layer 2's.
 
-Currently, ETH operates as a single, distributed 'world computer'. All transactions are executed serially and there is a single shared state that is maintained amongst all Ethereum nodes. This has it's advantages, but the disadvantage is that when a lot of users want to transact parallely, gas fees can spike which can make transactions very expensive. Recently, the demand for Ethereum dApps has led to a relatively high gas fees. You can argue security and decentralization benefits over cost all day, but it is still expensive for an average newcomer to use.
+Currently, Ethereum operates as a single, distributed 'world computer'. All transactions are executed serially and there is a single shared state that is maintained among all Ethereum nodes. This has its advantages, but the disadvantage is that when many users want to transact parallelly, gas fees can spike which can make transactions very expensive. Recently, the demand for Ethereum dApps has led to a relatively high gas fees. You can argue security and decentralization benefits over cost all day, but it is still expensive for an average newcomer to use.
 
-Layer 2 solutions, like rollups, help alleviate the cost by doing transaction execution off the main chain. Instead, they do the computation on the Layer 2, and then post a cryptographic proof back to the main chain that can be verified by anyone. Since anyone can check whether or not the proof that was posted is valid or invalid, they can feel comfortable in knowing if the transaction was executed properly or improperly. Due to this property, rollups inherit the security benefits of the main chain without needing to pay gas fees for computation and execution on the main chain.
+Layer 2 solutions, like rollups, help alleviate the cost by doing transaction execution off the main chain. Instead, they do the computation on the Layer 2, and then post a cryptographic proof back to the main chain that can be verified by anyone. Since anyone can check whether the proof that was posted is valid or invalid, they can feel comfortable in knowing if the transaction was executed properly or improperly. Due to this property, rollups inherit the security benefits of the main chain without needing to pay gas fees for computation and execution on the main chain.
 
-With the ETH upgrade, ETH is focused on enabling data sharding. Essentially this means that the single state of the network will be broken down into smaller sets of data called shards, and the goal is to reduce storage costs by making storage more accessible to the network. The consequence of doing this is that when rollups post proofs back to the main chain, it will be cheaper for the rollup to do so.
+With the Ethereum upgrade, the focus is on enabling data sharding. Essentially this means that the single state of the network will be broken down into smaller sets of data called shards, and the goal is to reduce storage costs by making storage more accessible to the network. The consequence of doing this is that when rollups post proofs back to the main chain, it will be cheaper for the rollup to do so.
 
-Gas costs on rollup chains are currently limited by gas costs of storage on the main chain. Even though the computation on Layer 2's is very cheap, posting proofs to the main chain still requires paying gas on Ethereum to store the proof. If storage costs on Ethereum go down, then cost of using rollup chains also goes down as proofs can be posted for cheaper. This will incentivize more people to use Layer 2 chains, and direct demand of Ethereum data storage will go down, which will further decrease storage costs on Ethereum even more, and so on. 
+Gas costs on rollup chains are currently limited by the gas costs of storage on the main chain. Even though the computation on Layer 2's is very cheap, posting proofs to the main chain still requires paying gas on Ethereum to store the proof. If storage costs on Ethereum go down, then cost of using rollup chains also goes down as proofs can be posted for cheaper. This will incentivize more people to use Layer 2 chains, causing direct demand of Ethereum data storage to go down. This will further decrease storage costs on Ethereum, and so on. 
 
-Therefore, the ETH upgrade will actually help secure Layer 2 solutions gain adoption and become even cheaper to use. 
+Therefore, the Ethereum upgrade will actually help secure Layer 2 solutions gain adoption and become even cheaper to use. 
 
 ---
 
